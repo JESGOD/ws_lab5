@@ -36,7 +36,7 @@ public class Ws_tienda {
     @Produces({"applicaction/json"})
     public String consultarClientes(){
         ws_logica_tienda miTienda = new ws_logica_tienda();
-        // preguntar
+        miTienda.eliminarUnDocumento();
         return miTienda.consultarClientes();
        
     }
