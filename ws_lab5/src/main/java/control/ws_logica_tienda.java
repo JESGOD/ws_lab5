@@ -10,6 +10,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 
@@ -23,12 +24,12 @@ public class ws_logica_tienda {
         // creamos objeto tipo MongoDatabase para conectarse y obtener la informacion de la base de datos que se encuentra en el servidor
         MongoDatabase db;
         db = cliente.getDatabase("lab5");
-        // obtenemos la collecion y retornamos el primer documento
+        // obtenemos la collecion y retornamos el la coleccion clientes
         MongoCollection<Document> coleccionTienda = db.getCollection("clientes");
         return coleccionTienda.find().first().toJson();
  //("mongodb://usuario:password@93.188.167.110:27017/?authSource=nombre_bd");
     }
-    public void eliminarUnDocumento(){
+    public void eliminarUnDocumento( String _id){
  
         MongoClient cliente; 
         MongoClientURI uri = new MongoClientURI("mongodb://userLab5:passworduserLab5@93.188.167.110:27017/?authSource=lab5");
@@ -37,7 +38,9 @@ public class ws_logica_tienda {
         MongoDatabase db;
         db = cliente.getDatabase("lab5");
         
-        MongoCollection<Document> coleccionTienda = db.getCollection("clientes");
-        coleccionTienda.deleteOne(eq("_id", new ObjectId("5f78a9ae87ce07f587cbbab3")));
+        MongoCollection<Document> coleccionTienda = db.getCollection("categorias");
+        coleccionTienda.deleteOne(eq("_id", new ObjectId("5f78a32887ce07f587cbbaa4")));
+        
+       
     }
 }
