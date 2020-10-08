@@ -29,7 +29,7 @@ public class ws_logica_tienda {
         return coleccionTienda.find().first().toJson();
  //("mongodb://usuario:password@93.188.167.110:27017/?authSource=nombre_bd");
     }
-    public void eliminarUnDocumento( String _id){
+    public String eliminarUnDocumento( String id){
  
         MongoClient cliente; 
         MongoClientURI uri = new MongoClientURI("mongodb://userLab5:passworduserLab5@93.188.167.110:27017/?authSource=lab5");
@@ -37,10 +37,12 @@ public class ws_logica_tienda {
     
         MongoDatabase db;
         db = cliente.getDatabase("lab5");
-        
         MongoCollection<Document> coleccionTienda = db.getCollection("categorias");
-        coleccionTienda.deleteOne(eq("_id", new ObjectId("5f78a32887ce07f587cbbaa4")));
+        coleccionTienda.deleteOne(eq("_id", new ObjectId(id)));
         
        
+        // if (){
+        return "{\"Confirmation\": 1}";
+       //      }
     }
 }

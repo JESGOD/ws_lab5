@@ -26,7 +26,7 @@ import org.bson.conversions.Bson;
  */
 @Path("ws_tienda")
 public class Ws_tienda {
-    ws_logica_tienda miTienda = new ws_logica_tienda();
+    
     @Context
     private UriInfo context;
 
@@ -39,16 +39,17 @@ public class Ws_tienda {
     @Produces({"applicaction/json"})
     
     public String consultarClientes(){
-        
+        ws_logica_tienda miTienda = new ws_logica_tienda();
         return miTienda.consultarClientes();
        
     }
     
-    @DELETE
-    @Path("eliminarUnDocumento/_id/{_id}")
-    //@Produces({"applicaction/json"})
-    public void eliminarUnDocumento(@PathParam("_id") String _id){
-        miTienda.eliminarUnDocumento("ObjectId(\"5f78a32887ce07f587cbbaa4\")");
+    @GET
+    @Path("eliminarUnDocumento/id/{id}")
+    @Produces({"applicaction/json"})
+    public void eliminarUnDocumento(@PathParam("id") String id){
+        ws_logica_tienda miTienda = new ws_logica_tienda();
+        miTienda.eliminarUnDocumento(id);
        // ObjectId("5f78a32887ce07f587cbbaa4")
     }
 }
