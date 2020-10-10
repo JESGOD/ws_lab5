@@ -9,6 +9,8 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
@@ -39,6 +41,25 @@ public class ws_logica_tienda {
         db = cliente.getDatabase("lab5");
         MongoCollection<Document> coleccionTienda = db.getCollection("categorias");
         coleccionTienda.deleteOne(eq("_id", new ObjectId(id)));
+        
+       
+        // if (){
+        return "{\"Confirmation\": 1}";
+       //      }
+    }
+    
+    
+    public String actualizarUnDocumento( String id, String nombre, String correo){
+ 
+        MongoClient cliente; 
+        MongoClientURI uri = new MongoClientURI("mongodb://userLab5:passworduserLab5@93.188.167.110:27017/?authSource=lab5");
+        cliente = new MongoClient(uri);
+    
+        MongoDatabase db;
+        db = cliente.getDatabase("lab5");
+        MongoCollection<Document> coleccionTienda = db.getCollection("clientes");
+        coleccionTienda.updateOne(eq("_id", new ObjectId(id)), combine(set("nombre", nombre), set("correo", correo)));
+        //coleccionTienda.deleteOne(eq("_id", new ObjectId(id)));
         
        
         // if (){

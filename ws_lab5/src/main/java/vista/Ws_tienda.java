@@ -52,4 +52,13 @@ public class Ws_tienda {
         miTienda.eliminarUnDocumento(id);
        // ObjectId("5f78a32887ce07f587cbbaa4")
     }
+    
+    @GET
+    @Path("actualizarUnDocumento/id/{id}/nombre/{nombre}/correo/{correo}")
+    @Produces({"applicaction/json"})
+    public void actualizarUnDocumento(@PathParam("id") String id, @PathParam("nombre") String nombre, @PathParam("correo") String correo){
+        ws_logica_tienda miTienda = new ws_logica_tienda();
+        miTienda.actualizarUnDocumento(id, nombre, correo);
+       // "5f789cbd87ce07f587cbba96"
+    }
 }
