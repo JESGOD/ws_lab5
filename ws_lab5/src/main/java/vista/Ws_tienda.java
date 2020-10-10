@@ -35,12 +35,12 @@ public class Ws_tienda {
     }
     
     @GET
-    @Path("consultarClientes")
+    @Path("consultarPrimerCliente")
     @Produces({"applicaction/json"})
     
-    public String consultarClientes(){
+    public String consultarPrimerCliente(){
         ws_logica_tienda miTienda = new ws_logica_tienda();
-        return miTienda.consultarClientes();
+        return miTienda.consultarPrimerCliente();
        
     }
     

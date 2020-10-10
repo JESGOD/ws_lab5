@@ -15,7 +15,7 @@ import org.bson.types.ObjectId;
 
 
 public class ws_logica_tienda {
-    public String consultarClientes(){
+    public String consultarPrimerCliente(){
         // creando cliente para la coneccion al servidor remoto
         MongoClient cliente;
         // la URI es una ruta la cual contiene datos para conectarse  en este caso al servidor 
