@@ -44,6 +44,22 @@ public class Ws_tienda {
        
     }
     
+    /////////////////////////////////////
+    
+    @GET
+    @Path("consultarUltimoCliente")
+    @Produces({"applicaction/json"})
+    
+    public String consultarUltimoCliente(){
+        ws_logica_tienda miTienda = new ws_logica_tienda();
+        return miTienda.consultarUltimoCliente();
+       
+    }
+    
+    //////////////////////////////////////////
+    
+    
+    
     @GET
     @Path("eliminarUnDocumento/id/{id}")
     @Produces({"applicaction/json"})
@@ -56,9 +72,9 @@ public class Ws_tienda {
     @GET
     @Path("actualizarUnDocumento/id/{id}/nombre/{nombre}/correo/{correo}")
     @Produces({"applicaction/json"})
-    public void actualizarUnDocumento(@PathParam("id") String id, @PathParam("nombre") String nombre, @PathParam("correo") String correo){
+    public void actualizarUnDocumento(@PathParam("id") String id, @PathParam("nombre") String nombre, @PathParam("correo") String correo ){
         ws_logica_tienda miTienda = new ws_logica_tienda();
         miTienda.actualizarUnDocumento(id, nombre, correo);
-       // "5f789cbd87ce07f587cbba96"
+       // 5f789cbd87ce07f587cbba96   
     }
 }
