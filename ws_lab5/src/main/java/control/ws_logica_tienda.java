@@ -91,4 +91,25 @@ public class ws_logica_tienda {
         return "{\"Confirmation\": 1}";
        //      }
     }
+     public String consultarLosUltimos5Documentos (){
+    
+        MongoClient cliente;
+        MongoClientURI uri = new MongoClientURI("mongodb://userLab5:passworduserLab5@93.188.167.110:27017/?authSource=lab5");
+        cliente = new MongoClient(uri);
+        
+        MongoDatabase db;
+        db = cliente.getDatabase("lab5");
+         MongoCollection<Document> coleccionTienda = db.getCollection("clientes");
+         
+        
+        
+        return coleccionTienda.find().toString();
+        
+       
+
 }
+}    
+    
+   
+
+    
