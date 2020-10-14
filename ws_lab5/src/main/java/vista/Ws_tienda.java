@@ -44,7 +44,7 @@ public class Ws_tienda {
        
     }
     
-    /////////////////////////////////////
+    ///////////////////////////////////////7/////
     
     @GET
     @Path("consultarUltimoCliente")

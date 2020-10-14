@@ -36,9 +36,9 @@ public class ws_logica_tienda {
     }
     
     
-    ////////////////////////////////////////////
+    ///////////////////////////////////////////////////7///
     
-    public String consultarUltimoCliente(){
+    public String consultarUltimoCliente(){  
         // creando cliente para la coneccion al servidor remoto
         MongoClient cliente;
         // la URI es una ruta la cual contiene datos para conectarse  en este caso al servidor 
@@ -91,7 +91,7 @@ public class ws_logica_tienda {
         return "";
        //      }
     }
-     public String consultarLosUltimos5Documentos (){
+    public String consultarLosUltimos5Documentos (){
     
         MongoClient cliente;
         MongoClientURI uri = new MongoClientURI("mongodb://userLab5:passworduserLab5@93.188.167.110:27017/?authSource=lab5");
@@ -104,10 +104,9 @@ public class ws_logica_tienda {
         
         
         return coleccionTienda.find().toString();
-        
-       
 
-}
+
+    }
 }    
     
    
