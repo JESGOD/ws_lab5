@@ -57,6 +57,15 @@ public class Ws_tienda {
     }
     
     //////////////////////////////////////////
+    @GET
+    @Path("consultarUltimos5Clientes")
+    @Produces({"applicaction/json"})
+    
+    public String consultarUltimos5Clientes(){
+        ws_logica_tienda miTienda = new ws_logica_tienda();
+        return miTienda.consultarLosUltimos5Documentos();
+       
+    }
     
     
     
