@@ -31,6 +31,7 @@ public class ws_logica_tienda {
         // obtenemos la collecion y retornamos el la coleccion clientes
         MongoCollection<Document> coleccionTienda = db.getCollection("clientes");
         return coleccionTienda.find().first().toJson();
+       
  //("mongodb://usuario:password@93.188.167.110:27017/?authSource=nombre_bd");
     }
     
@@ -49,9 +50,9 @@ public class ws_logica_tienda {
         // obtenemos la collecion y retornamos el la coleccion clientes
         MongoCollection<Document> coleccionTienda = db.getCollection("clientes");
         //coleccionTienda.find(sort(Sorts.descending("codigo")));
-        coleccionTienda.find().sort(Sorts.descending("codigo"));
-        return coleccionTienda.find().first().toJson();
- //("mongodb://usuario:password@93.188.167.110:27017/?authSource=nombre_bd");
+        
+         return coleccionTienda.find().sort(Sorts.descending("_id")).first().toJson();
+
     }
     
     ////////////////////////////////////////////
@@ -64,12 +65,12 @@ public class ws_logica_tienda {
     
         MongoDatabase db;
         db = cliente.getDatabase("lab5");
-        MongoCollection<Document> coleccionTienda = db.getCollection("categorias");
-        coleccionTienda.deleteOne(eq("_id", new ObjectId(id)));
+        MongoCollection<Document> coleccionTienda = db.getCollection("masVendidos");
+        coleccionTienda.deleteOne(eq("_id", new ObjectId(id))); 
         
        
         // if (){
-        return "{\"Confirmation\": 1}";
+        return "";
        //      }
     }
     
@@ -84,11 +85,10 @@ public class ws_logica_tienda {
         db = cliente.getDatabase("lab5");
         MongoCollection<Document> coleccionTienda = db.getCollection("clientes");
         coleccionTienda.updateOne(eq("_id", new ObjectId(id)), combine(set("nombre", nombre), set("correo", correo)));
-        //coleccionTienda.deleteOne(eq("_id", new ObjectId(id)));
         
        
         // if (){
-        return "{\"Confirmation\": 1}";
+        return "";
        //      }
     }
 }
