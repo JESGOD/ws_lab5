@@ -6,6 +6,10 @@
 package control;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.MongoException;
+import com.mongodb.MongoQueryException;
+import com.mongodb.MongoSecurityException;
+import com.mongodb.MongoSocketOpenException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Aggregates.sort;
@@ -19,20 +23,32 @@ import org.bson.types.ObjectId;
 
 
 public class ws_logica_tienda {
+    
     public String consultarPrimerCliente(){
         // creando cliente para la coneccion al servidor remoto
-        MongoClient cliente;
-        // la URI es una ruta la cual contiene datos para conectarse  en este caso al servidor 
-        MongoClientURI uri = new MongoClientURI("mongodb://userLab5:passworduserLab5@93.188.167.110:27017/?authSource=lab5");
-        cliente = new MongoClient(uri);
-        // creamos objeto tipo MongoDatabase para conectarse y obtener la informacion de la base de datos que se encuentra en el servidor
-        MongoDatabase db;
-        db = cliente.getDatabase("lab5");
-        // obtenemos la collecion y retornamos el la coleccion clientes
-        MongoCollection<Document> coleccionTienda = db.getCollection("clientes");
-        return coleccionTienda.find().first().toJson();
-       
- //("mongodb://usuario:password@93.188.167.110:27017/?authSource=nombre_bd");
+        try {
+            MongoClient cliente;
+            MongoClientURI uri = new MongoClientURI("mongodb://userLab5:passworduserLab5@93.188.167.110:27017/?authSource=lab5RR");
+            cliente = new MongoClient(uri);
+            MongoDatabase db;
+            db = cliente.getDatabase("lab5");
+            MongoCollection<Document> coleccionTienda = db.getCollection("clientes");
+         
+            return coleccionTienda.find().first().toJson();
+        }catch(Exception e){
+            String cadena;
+            cadena  = String.valueOf(e);
+            if ( cadena == "MongoSecurityException"){
+                return "error al intentar conectarse al servidor";
+            }else {
+                if (cadena == "java.lang.NullPointerException"){
+                    return "error al intentar encontrar la coleccion";
+                }
+            }
+            return cadena;
+        }
+         
+ 
     }
     
     
@@ -68,10 +84,7 @@ public class ws_logica_tienda {
         MongoCollection<Document> coleccionTienda = db.getCollection("masVendidos");
         coleccionTienda.deleteOne(eq("_id", new ObjectId(id))); 
         
-       
-        // if (){
         return "";
-       //      }
     }
     
     
@@ -86,10 +99,8 @@ public class ws_logica_tienda {
         MongoCollection<Document> coleccionTienda = db.getCollection("clientes");
         coleccionTienda.updateOne(eq("_id", new ObjectId(id)), combine(set("nombre", nombre), set("correo", correo)));
         
-       
-        // if (){
+        
         return "";
-       //      }
     }
     public String consultarLosUltimos5Documentos (){
     
@@ -108,6 +119,9 @@ public class ws_logica_tienda {
 
     }
 }    
+
+
+  
     
    
 
